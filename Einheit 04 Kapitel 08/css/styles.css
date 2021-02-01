@@ -1,0 +1,78 @@
+header {
+    background-image: url('https://cdn.pixabay.com/photo/2017/10/24/18/27/lion-2885618_960_720.jpg');
+    background-size: cover;
+    background-position: left top;
+    height: 350px;
+    border: 2px solid black;
+   
+
+}
+
+header h1 {
+    color: whitesmoke;
+    padding: 9%;
+    font-size: 70px;
+    font-family: 'Cinzel', serif;
+    text-shadow: 0px 0px 5px whitesmoke;
+    margin-top: 0%;
+}
+
+h1::first-letter {
+    color: gold;
+}
+
+.yellow {
+    color: gold;
+}
+
+.animal {
+    margin-top: 100px;
+}
+
+.animal td {
+    background-color: gold;
+    width: 20%;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    border: 1px solid black;
+
+}
+
+.animal th {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-style: italic;
+    background-color: grey;
+    text-decoration: underline;
+    border: 1px solid black;
+}
+
+p {
+    font-family: 'Cinzel', serif;
+    border: 2px solid black;
+    box-shadow: 0px 3px 5px black;
+    text-align: center;
+    margin: 50px;
+    padding: 1em;
+    background-color: black;
+    color: whitesmoke;
+}
+nav a{
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    color: white;
+    margin-top: 5px;
+}
+nav a:hover {
+    text-shadow: 0px 2px 5px white;
+    font-size: 20px;
+}
+p:hover {
+    text-shadow: 0px 1px 3px white;
+    box-shadow: 0px 5px 8px black;
+
+}
+body {
+    background-image: url('https://cdn.pixabay.com/photo/2016/03/21/15/43/texture-1270733__340.jpg');
+    background-size: cover;
+}
