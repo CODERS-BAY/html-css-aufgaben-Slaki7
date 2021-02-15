@@ -6,56 +6,130 @@ header {
     background-position: top center;
     border: solid 2px black;
 }
+
 header h1 {
     text-align: left center;
     padding: 2em;
     color: white;
     font-size: 50px;
+    text-shadow: 0px 3px 5px white;
 }
+
 h1::first-letter {
     color: yellow;
     font-size: larger;
 }
+
 body {
-    background: rgb(34,195,180);
-    background: linear-gradient(0deg, rgba(34,195,180,1) 0%, rgba(253,187,45,1) 100%);
+    background: rgb(34, 195, 180);
+    background: linear-gradient(0deg, rgba(34, 195, 180, 1) 0%, rgba(253, 187, 45, 1) 100%);
     background-size: cover;
-    
+    text-align: center;
 }
+
 .teaser {
     display: flex;
     justify-content: center;
     margin: 20px;
-    
 }
-.teaser img{
-     margin-top: 10px;
+
+.teaser img {
+    margin-top: 10px;
     margin-bottom: 10px;
     max-block-size: 150px;
     max-height: 150px;
 }
+
 img {
     width: 200px;
     height: 150px;
+
 }
-.teaser div{
+
+.teaser div {
     border: solid 1px black;
-    padding: 1em;
+    padding: 2em;
     text-align: center;
     margin-right: 1em;
     font-family: 'Fredoka One', cursive;
+    background-color: white;
+    width: 33%;
 }
+
 nav a {
     text-decoration: none;
     color: grey;
     margin-right: 10%;
 }
+
 nav {
     margin-top: 2px;
     text-align: center;
     border-bottom: solid 1px gray;
 }
+
 nav a:hover {
     font-size: larger;
     text-shadow: 0px 2px 5px gray;
+}
+
+.teaser img:hover {
+    box-shadow: 0px 3px 5px white;
+    border: solid 1px white;
+}
+
+.teaser div p:hover {
+    color: violet;
+}
+
+footer {
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+
+article {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    padding: 1em;
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+
+}
+
+h2 {
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.animal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2em;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+.animal * {
+    padding: 1em;
+}
+.animal th {
+    font-size: larger;
+}
+.flamingo p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+}
+.flamingo span {
+    width: 200px;
+    background-color: red;
+    display: block;
+    margin: auto;
 }

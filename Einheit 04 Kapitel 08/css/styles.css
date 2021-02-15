@@ -97,18 +97,15 @@ body {
     background-color: green;
 
 }
-
 .contact input {
     padding: 0.5em;
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
 }
-
 label {
     text-decoration: underline;
 }
-
 select {
     padding: 0.5em;
     margin-top: 10px;
