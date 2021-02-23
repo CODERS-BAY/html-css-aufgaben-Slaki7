@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Schere, Stein Papier</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        .bg-custom {
+            background-image: url("img/brett.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        body,
+        main {
+            min-height: 100vh;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <main class="bg-custom">
+        <h1 class="text-white text-center py-5">Schere, Stein, Papier</h1>
+        <article class="container bg-light p-4">
+            <section class="row">
+
+                <button class="col text-center bg-transparent border-0" type="button" onclick="play(1)">
+                    <img class="img-fluid w-50" src="img/schere.webp" alt="Schere">
+                </button>
+                <button class="col text-center bg-transparent border-0" type="button" onclick="play(2)">
+                    <img class="img-fluid w-50" src="img/stein.webp" alt="Stein">
+                </button>
+                <button class="col text-center bg-transparent border-0" type="button" onclick="play(3)">
+                    <img class="img-fluid w-50" src="img/papier.webp" alt="Papier">
+                </button>
+
+            </section>
+        </article>
+        <article class="container bg-white">
+            <h2 class="text-center px-3">Runde: <span id="outputRound">0</span></h2>
+            <p class="text-center px-3" id="whoWins"></p>
+            <p class="text-center px-3" id="outputScore"></p>
+            <div class="row align-items-center">
+                <div class="col text-center px-3" id="outputChoiceUser"></div>
+                <div class="col text-center px-3" id="outputChoiceComp"></div>
+            </div>
+            <h3 id="infoGame" class="text-center px-3"></h3>
+        </article>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+    <script>
+        /*
+         * Stein = 1
+         * Schere = 2
+         * Papier = 3
+         * Schere - Papier = 2
+         * Papier - Stein = 3
+         * Stein - Schere = 1
+         * 
+         * User   - Comp
+         * 2      - 3      -> 2 (User)    * Schere - Papier
+         * 2      - 1      -> 1 (Comp)    * Schere - Stein
+         * 1      - 3      -> 3 (Comp)    * Stein  - Papier
+         * 1      - 2      -> 1 (User)    * Stein  - Schere
+         * 3      - 1      -> 3 (User)    * Papier - Stein
+         * 3      - 2      -> 2 (Comp)    * Papier - Schere
+         * 
+         * */
+        "use strict";
+        let round = 0;
+        let countUserWin = 0;
+        let countCompWin = 0;
+        let end = 1;
+        let mouseoverElement = document.getElementsByClassName('w-50');
+        listener();
+
+        function play(userChoice) {
+            console.log('Userwahl:' + userChoice);
+            // Math.floor(Math.random() * (max - min +1)) + min;
+            let compChoice = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+            console.log('Comp: ' + compChoice);
+            round++;
+            document.getElementById('outputRound').innerText = round;
+
+            if (
+                userChoice == 2 && compChoice == 3 ||
+                userChoice == 1 && compChoice == 3 ||
+                userChoice == 3 && compChoice == 1
+            ) {
+                console.log('User gewinnt Runde');
+                userWin();
+                icon(userChoice, 'User');
+                icon(compChoice, 'Comp');
+            } else if (
+                userChoice == 2 && compChoice == 1 ||
+                userChoice == 1 && compChoice == 3 ||
+                userChoice == 3 && compChoice == 2
+            ) {
+                console.log('User verliert Runde');
+                compWin();
+                icon(userChoice, 'User');
+                icon(compChoice, 'Comp');
+            } else {
+                console.log('Unentschieden');
+                icon(userChoice, 'User');
+                icon(compChoice, 'Comp');
+            }
+            if (countUserWin === 3 || countCompWin === 3) {
+                //Spiel beendet//
+                const button = document.querySelectorAll('button');
+                // Buttons unklickbar machen //
+                for (let result of button) {
+                    result.disabled = true;
+                }
+                end = 2;
+                if (countUserWin > countCompWin) {
+                    infoGame.innerText = "User hat das Spiel gewonnen!"
+                } else {
+                    infoGame.innerText = "Computer hat das Spiel gewonnen!"
+                }
+            }
+        }
+        // Wenn der User gewinnt: //
+        function userWin() {
+            countUserWin++;
+            output();
+            document.getElementById('whoWins').innerText = 'User gewinnt Runde';
+        }
+        // Wenn der Computer gewinnt: //
+        function compWin() {
+            countCompWin++;
+            output();
+            document.getElementById('whoWins').innerText = 'Computer gewinnt Runde';
+        }
+
+        function output() {
+            outputScore.innerText = countUserWin + ":" + countCompWin;
+        }
+
+        function icon(choice, x) {
+            let insertIcon = document.getElementById('outputChoice' + x);
+            switch (choice) {
+                case 1:
+                    insertIcon.innerHTML = '<img class="img-fluid w-25" src="img/schere.webp" alt="Schere">';
+                    break;
+                case 2:
+                    insertIcon.innerHTML = '<img class="img-fluid w-25" src="img/stein.webp" alt="Stein">';
+                    break;
+                case 3:
+                    insertIcon.innerHTML = '<img class="img-fluid w-25" src="img/papier.webp" alt="Papier">';
+                    break;
+            }
+        }
+
+        function listener() {
+            for (let i = 0; i < mouseoverElement.length; i++) {
+
+                mouseoverElement[i].addEventListener("mouseover", function (event) {
+                    event.target.style.transform = "rotate(15deg)";
+                    setTimeout(function () {
+                        event.target.style.transform = "";
+                    }, 500);
+                }, false);
+            }
+        
+        }
+        
+    </script>
+</body>
+
+</html>
